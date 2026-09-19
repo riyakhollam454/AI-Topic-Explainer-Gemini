@@ -10,134 +10,272 @@
 
     <title>AI Topic Explainer</title>
 
-    <!-- Link CSS from static folder -->
     <link rel="stylesheet"
-          href="{{ url_for('static', filename='styles.css') }}">
+          href="{{ url_for('static', filename='style.css') }}">
 
-    
 </head>
-
 
 <body>
 
-    <div class="app-container">
+    <div class="container">
 
         <!-- Header -->
-        <header class="header">
+
+        <header>
 
             <div class="logo">
-                <div class="logo-icon">
-                    ✦
-                </div>
-
-                <div>
-                    <h1>AI Topic Explainer</h1>
-                    <p>Learn Data Science & GenAI</p>
-                </div>
+                🤖 AI Topic Explainer
             </div>
 
-            <button class="clear-button"
-                    onclick="clearChat()">
-                Clear Chat
-            </button>
+            <p>
+                Learn any topic with the power of Gemini AI
+            </p>
 
         </header>
 
 
-        <!-- Chat Area -->
-        <main id="chat-container"
-              class="chat-container">
+        <!-- Main Card -->
 
-            <!-- Welcome Screen -->
-            <div class="welcome">
+        <div class="card">
 
-                <div class="welcome-icon">
-                    ✦
-                </div>
+            <h1>What do you want to learn?</h1>
 
-                <h2>
-                    What would you like to learn?
-                </h2>
-
-                <p>
-                    Ask me anything from your
-                    Data Science and GenAI study material.
-                </p>
+            <p class="subtitle">
+                Enter a topic and let AI explain it in simple language.
+            </p>
 
 
-                <!-- Suggested Questions -->
-                <div class="suggestions">
+            <!-- Error -->
 
-                    <button onclick="askQuestion(
-                        'What is Data Science?'
-                    )">
-                        What is Data Science?
-                    </button>
+            {% if error %}
 
-
-                    <button onclick="askQuestion(
-                        'Explain machine learning'
-                    )">
-                        Explain Machine Learning
-                    </button>
-
-
-                    <button onclick="askQuestion(
-                        'What is RAG?'
-                    )">
-                        What is RAG?
-                    </button>
-
-
-                    <button onclick="askQuestion(
-                        'Explain prompt engineering'
-                    )">
-                        Prompt Engineering
-                    </button>
-
-                </div>
-
+            <div class="error">
+                {{ error }}
             </div>
 
-        </main>
+            {% endif %}
 
 
-        <!-- Message Input Area -->
-        <div class="input-container">
+            <!-- Form -->
 
-            <textarea
-                id="message"
-                placeholder="Ask a question..."
-                rows="1"
-                onkeydown="handleKey(event)">
-            </textarea>
+            <form action="/generate"
+                  method="POST">
+
+                <label for="topic">
+                    Enter Topic
+                </label>
+
+                <input
+                    type="text"
+                    id="topic"
+                    name="topic"
+                    placeholder="Example: Machine Learning"
+                    value="{{ topic or '' }}"
+                    required
+                >
 
 
-            <button id="send-button"
-                    onclick="sendMessage()">
+                <div class="options">
 
-                Send
+                    <div>
 
-            </button>
+                        <label for="level">
+                            Explanation Level
+                        </label>
+
+                        <select
+                            name="level"
+                            id="level"
+                        >
+
+                            <option value="Beginner"
+                            {% if level == "Beginner" %}selected{% endif %}>
+                                Beginner
+                            </option>
+
+                            <option value="Intermediate"
+                            {% if level == "Intermediate" %}selected{% endif %}>
+                                Intermediate
+                            </option>
+
+                            <option value="Advanced"
+                            {% if level == "Advanced" %}selected{% endif %}>
+                                Advanced
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div>
+
+                        <label for="length">
+                            Explanation Length
+                        </label>
+
+                        <select
+                            name="length"
+                            id="length"
+                        >
+
+                            <option value="Short"
+                            {% if length == "Short" %}selected{% endif %}>
+                                Short
+                            </option>
+
+                            <option value="Medium"
+                            {% if length == "Medium" %}selected{% endif %}>
+                                Medium
+                            </option>
+
+                            <option value="Long"
+                            {% if length == "Long" %}selected{% endif %}>
+                                Long
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <button type="submit"
+                        class="generate-btn">
+
+                    ✨ Generate Explanation
+
+                </button>
+
+            </form>
 
         </div>
 
 
-        <!-- Footer -->
-        <footer class="footer">
+        <!-- Result -->
 
-            AI Topic Explainer
-            | Powered by AI
+        {% if explanation %}
+
+        <div class="result-card">
+
+            <div class="result-header">
+
+                <h2>
+                    📚 {{ topic }}
+                </h2>
+
+                <span>
+                    Generated by Gemini
+                </span>
+
+            </div>
+
+
+            <div class="explanation">
+
+                {{ explanation }}
+
+            </div>
+
+
+            <!-- Download Buttons -->
+
+            <div class="download-buttons">
+
+                <form action="/download_txt"
+                      method="POST">
+
+                    <input
+                        type="hidden"
+                        name="topic"
+                        value="{{ topic }}"
+                    >
+
+                    <textarea
+                        name="explanation"
+                        hidden
+                    >{{ explanation }}</textarea>
+
+                    <button
+                        type="submit"
+                        class="download txt">
+
+                        📄 Download TXT
+
+                    </button>
+
+                </form>
+
+
+                <form action="/download_pdf"
+                      method="POST">
+
+                    <input
+                        type="hidden"
+                        name="topic"
+                        value="{{ topic }}"
+                    >
+
+                    <textarea
+                        name="explanation"
+                        hidden
+                    >{{ explanation }}</textarea>
+
+                    <button
+                        type="submit"
+                        class="download pdf">
+
+                        📕 Download PDF
+
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+        {% endif %}
+
+
+        <footer>
+
+            <p>
+                Powered by Gemini AI + Python Flask
+            </p>
 
         </footer>
 
     </div>
 
 
-    <!-- Link JavaScript from static folder -->
-    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <script>
+
+        const form = document.querySelector("form");
+
+        if (form) {
+
+            form.addEventListener("submit", function() {
+
+                const button =
+                    form.querySelector(".generate-btn");
+
+                if (button) {
+
+                    button.innerHTML =
+                        "⏳ Generating Explanation...";
+
+                    button.disabled = true;
+
+                }
+
+            });
+
+        }
+
+    </script>
 
 </body>
 
 </html>
-```
