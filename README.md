@@ -33,10 +33,6 @@ AI-Topic-Explainer-Gemini/
 
 ├── app.py
 
-├── requirements.txt
-
-├── .env
-
 ├── .gitignore
 
 ├── README.md
