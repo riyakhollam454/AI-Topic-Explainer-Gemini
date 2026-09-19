@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>AI Topic Explainer</title>
+
+    <!-- Link CSS from static folder -->
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='styles.css') }}">
+
+    
+</head>
+
+
+<body>
+
+    <div class="app-container">
+
+        <!-- Header -->
+        <header class="header">
+
+            <div class="logo">
+                <div class="logo-icon">
+                    ✦
+                </div>
+
+                <div>
+                    <h1>AI Topic Explainer</h1>
+                    <p>Learn Data Science & GenAI</p>
+                </div>
+            </div>
+
+            <button class="clear-button"
+                    onclick="clearChat()">
+                Clear Chat
+            </button>
+
+        </header>
+
+
+        <!-- Chat Area -->
+        <main id="chat-container"
+              class="chat-container">
+
+            <!-- Welcome Screen -->
+            <div class="welcome">
+
+                <div class="welcome-icon">
+                    ✦
+                </div>
+
+                <h2>
+                    What would you like to learn?
+                </h2>
+
+                <p>
+                    Ask me anything from your
+                    Data Science and GenAI study material.
+                </p>
+
+
+                <!-- Suggested Questions -->
+                <div class="suggestions">
+
+                    <button onclick="askQuestion(
+                        'What is Data Science?'
+                    )">
+                        What is Data Science?
+                    </button>
+
+
+                    <button onclick="askQuestion(
+                        'Explain machine learning'
+                    )">
+                        Explain Machine Learning
+                    </button>
+
+
+                    <button onclick="askQuestion(
+                        'What is RAG?'
+                    )">
+                        What is RAG?
+                    </button>
+
+
+                    <button onclick="askQuestion(
+                        'Explain prompt engineering'
+                    )">
+                        Prompt Engineering
+                    </button>
+
+                </div>
+
+            </div>
+
+        </main>
+
+
+        <!-- Message Input Area -->
+        <div class="input-container">
+
+            <textarea
+                id="message"
+                placeholder="Ask a question..."
+                rows="1"
+                onkeydown="handleKey(event)">
+            </textarea>
+
+
+            <button id="send-button"
+                    onclick="sendMessage()">
+
+                Send
+
+            </button>
+
+        </div>
+
+
+        <!-- Footer -->
+        <footer class="footer">
+
+            AI Topic Explainer
+            | Powered by AI
+
+        </footer>
+
+    </div>
+
+
+    <!-- Link JavaScript from static folder -->
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+
+</html>
+```
