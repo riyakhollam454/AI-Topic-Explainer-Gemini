@@ -1,0 +1,656 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+
+    font-family:
+        Inter,
+        Arial,
+        sans-serif;
+
+    background: #f5f7fb;
+
+    color: #1f2937;
+
+}
+
+
+/* -----------------------------
+   Main Layout
+----------------------------- */
+
+.app-container {
+
+    display: flex;
+
+    height: 100vh;
+
+}
+
+
+/* -----------------------------
+   Sidebar
+----------------------------- */
+
+.sidebar {
+
+    width: 270px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #0f2747,
+            #173f6b
+        );
+
+    color: white;
+
+    padding: 25px;
+
+    display: flex;
+
+    flex-direction: column;
+
+}
+
+
+.logo {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    margin-bottom: 30px;
+
+}
+
+
+.logo-icon {
+
+    width: 45px;
+
+    height: 45px;
+
+    border-radius: 12px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background: white;
+
+    color: #173f6b;
+
+    font-weight: bold;
+
+}
+
+
+.logo h2 {
+
+    font-size: 19px;
+
+}
+
+
+.logo span {
+
+    font-size: 12px;
+
+    opacity: 0.7;
+
+}
+
+
+/* New Chat */
+
+.new-chat {
+
+    border: none;
+
+    padding: 13px;
+
+    border-radius: 10px;
+
+    background: white;
+
+    color: #173f6b;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    margin-bottom: 35px;
+
+}
+
+
+.new-chat:hover {
+
+    transform: translateY(-1px);
+
+}
+
+
+/* Sidebar section */
+
+.section-title {
+
+    font-size: 12px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 1px;
+
+    opacity: 0.6;
+
+    margin-bottom: 12px;
+
+}
+
+
+.knowledge-card {
+
+    display: flex;
+
+    gap: 10px;
+
+    padding: 13px;
+
+    border-radius: 10px;
+
+    background: rgba(
+        255,
+        255,
+        255,
+        0.08
+    );
+
+}
+
+
+.pdf-icon {
+
+    background: #ef4444;
+
+    padding: 8px;
+
+    height: 32px;
+
+    border-radius: 6px;
+
+    font-size: 10px;
+
+    font-weight: bold;
+
+}
+
+
+.knowledge-card strong {
+
+    display: block;
+
+    font-size: 12px;
+
+}
+
+
+.knowledge-card span {
+
+    display: block;
+
+    font-size: 10px;
+
+    opacity: 0.65;
+
+    margin-top: 4px;
+
+}
+
+
+.sidebar-bottom {
+
+    margin-top: auto;
+
+    text-align: center;
+
+    font-size: 11px;
+
+    opacity: 0.6;
+
+}
+
+
+/* -----------------------------
+   Main
+----------------------------- */
+
+.main {
+
+    flex: 1;
+
+    display: flex;
+
+    flex-direction: column;
+
+    min-width: 0;
+
+}
+
+
+/* Header */
+
+.header {
+
+    height: 90px;
+
+    padding: 20px 35px;
+
+    background: white;
+
+    border-bottom:
+        1px solid #e5e7eb;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+}
+
+
+.header h1 {
+
+    font-size: 22px;
+
+}
+
+
+.header p {
+
+    font-size: 13px;
+
+    color: #6b7280;
+
+    margin-top: 4px;
+
+}
+
+
+.status {
+
+    font-size: 12px;
+
+    color: #16a34a;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+}
+
+
+.status-dot {
+
+    width: 8px;
+
+    height: 8px;
+
+    border-radius: 50%;
+
+    background: #22c55e;
+
+}
+
+
+/* -----------------------------
+   Chat
+----------------------------- */
+
+.chat-container {
+
+    flex: 1;
+
+    overflow-y: auto;
+
+    padding: 35px;
+
+}
+
+
+.welcome {
+
+    max-width: 750px;
+
+    margin: 70px auto;
+
+    text-align: center;
+
+}
+
+
+.welcome-icon {
+
+    width: 65px;
+
+    height: 65px;
+
+    border-radius: 20px;
+
+    margin: auto;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    font-size: 30px;
+
+    color: white;
+
+    background:
+        linear-gradient(
+            135deg,
+            #2563eb,
+            #7c3aed
+        );
+
+}
+
+
+.welcome h2 {
+
+    margin-top: 20px;
+
+    font-size: 27px;
+
+}
+
+
+.welcome p {
+
+    margin-top: 10px;
+
+    color: #6b7280;
+
+}
+
+
+/* Suggestions */
+
+.suggestions {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 12px;
+
+    margin-top: 30px;
+
+}
+
+
+.suggestions button {
+
+    padding: 15px;
+
+    background: white;
+
+    border:
+        1px solid #e5e7eb;
+
+    border-radius: 12px;
+
+    cursor: pointer;
+
+    text-align: left;
+
+    font-size: 13px;
+
+}
+
+
+.suggestions button:hover {
+
+    border-color: #2563eb;
+
+    background: #eff6ff;
+
+}
+
+
+/* -----------------------------
+   Messages
+----------------------------- */
+
+.message {
+
+    max-width: 800px;
+
+    margin: 0 auto 20px;
+
+    display: flex;
+
+    gap: 12px;
+
+}
+
+
+.avatar {
+
+    min-width: 38px;
+
+    height: 38px;
+
+    border-radius: 10px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 12px;
+
+    font-weight: bold;
+
+}
+
+
+.user-avatar {
+
+    background: #2563eb;
+
+    color: white;
+
+}
+
+
+.bot-avatar {
+
+    background: #e0e7ff;
+
+    color: #3730a3;
+
+}
+
+
+.message-content {
+
+    background: white;
+
+    padding: 15px 18px;
+
+    border-radius: 12px;
+
+    line-height: 1.7;
+
+    font-size: 14px;
+
+    box-shadow:
+        0 2px 8px
+        rgba(0,0,0,0.04);
+
+}
+
+
+.user-message
+.message-content {
+
+    background: #2563eb;
+
+    color: white;
+
+}
+
+
+/* -----------------------------
+   Input
+----------------------------- */
+
+.input-area {
+
+    padding: 15px 35px 20px;
+
+    background: white;
+
+    border-top:
+        1px solid #e5e7eb;
+
+}
+
+
+.input-box {
+
+    max-width: 850px;
+
+    margin: auto;
+
+    display: flex;
+
+    align-items: center;
+
+    background: #f8fafc;
+
+    border:
+        1px solid #dbe1ea;
+
+    border-radius: 14px;
+
+    padding: 8px 10px;
+
+}
+
+
+textarea {
+
+    flex: 1;
+
+    border: none;
+
+    outline: none;
+
+    background: transparent;
+
+    resize: none;
+
+    padding: 10px;
+
+    font-size: 14px;
+
+}
+
+
+#send-button {
+
+    width: 42px;
+
+    height: 42px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: #2563eb;
+
+    color: white;
+
+    font-size: 18px;
+
+    cursor: pointer;
+
+}
+
+
+#send-button:hover {
+
+    background: #1d4ed8;
+
+}
+
+
+.disclaimer {
+
+    text-align: center;
+
+    font-size: 10px;
+
+    color: #9ca3af;
+
+    margin-top: 8px;
+
+}
+
+
+/* -----------------------------
+   Responsive
+----------------------------- */
+
+@media (max-width: 750px) {
+
+    .sidebar {
+
+        display: none;
+
+    }
+
+    .header {
+
+        padding: 15px 20px;
+
+    }
+
+    .chat-container {
+
+        padding: 20px;
+
+    }
+
+    .input-area {
+
+        padding: 12px;
+
+    }
+
+    .suggestions {
+
+        grid-template-columns: 1fr;
+
+    }
+
+}
